@@ -1,6 +1,6 @@
 # LTHDH.20241-19
 GIỚI THIỆU NHÓM 19:
-  Gồm 4 thành viên:
+  Gồm 5 thành viên:
     - Nguyễn Thị Kiều Oanh - 20225899
     - Vũ Thị Quỳnh Như - 20215110
     - Nguyễn Thị Nhung - 20225754
