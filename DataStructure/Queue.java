@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-class Queue extends DataStructure {
+public class Queue extends DataStructure {
     private ArrayList<Integer> queue;
 
     public Queue() {

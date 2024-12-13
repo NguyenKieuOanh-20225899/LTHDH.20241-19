@@ -1,13 +1,12 @@
 package DataStructure;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
 
-class List extends DataStructure {
+public class List extends DataStructure {
     @Override
     public void insert(int value) {
         elements.add(value);

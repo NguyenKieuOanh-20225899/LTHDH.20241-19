@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.util.*;
 
 
-abstract class DataStructure{
+public abstract class DataStructure{
     protected java.util.List<Integer> elements;
 
     public DataStructure() {

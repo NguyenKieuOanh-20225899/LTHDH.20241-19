@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.util.*;
 
 
-class Stack extends DataStructure {
+public class Stack extends DataStructure {
     private ArrayList<Integer> stack;
 
     public Stack() {
