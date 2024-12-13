@@ -4,13 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import javax.swing.Timer;
 
 import DataStructure.Stack;
 import DataStructure.Queue;
 import DataStructure.DataStructure;
 import DataStructure.List;
-
+import javax.swing.Timer;
 
 class DemoPanel extends JPanel {
     private DataStructure dataStructure;
@@ -28,7 +27,10 @@ class DemoPanel extends JPanel {
         add(new JScrollPane(outputArea), BorderLayout.CENTER);
 
         inputField = new JTextField();
-        add(inputField, BorderLayout.NORTH);
+        JPanel inputPanel = new JPanel(new FlowLayout());
+        inputPanel.add(new JLabel("Enter Value: "));
+        inputPanel.add(inputField);
+        add(inputPanel, BorderLayout.NORTH);
 
         visualizationPanel = new JPanel() {
             @Override
@@ -100,7 +102,7 @@ class DemoPanel extends JPanel {
         buttonPanel.add(deleteButton);
         buttonPanel.add(backButton);
 
-        add(buttonPanel, BorderLayout.NORTH);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void drawElements(Graphics g) {

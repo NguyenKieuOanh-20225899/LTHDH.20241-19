@@ -12,7 +12,7 @@ import DataStructure.DataStructure;
 import DataStructure.List;
 
 
-class MainMenu extends JFrame {
+public class MainMenu extends JFrame {
     public MainMenu() {
         setTitle("Data Structure Operations");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
