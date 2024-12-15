@@ -18,11 +18,10 @@ public abstract class DataStructure<T> {
     }
 
     public void sort() {
-        // Sorting logic is left for child classes, if needed
     }
 
     public boolean find(T item) {
-        return elements.contains(item); // Return true if the item exists in the list
+        return elements.contains(item); 
     }
 
     public void delete(T item) {
