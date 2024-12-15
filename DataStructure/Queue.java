@@ -1,41 +1,28 @@
 package DataStructure;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 
 public class Queue extends DataStructure {
-    private ArrayList<Integer> queue;
 
-    public Queue() {
-        queue = new ArrayList<>();
-    }
-
-    @Override
+    @Override //Enqueue
     public void insert(int value) {
-        queue.add(value);
-        elements.add(value);
+        elements.add(value); 
     }
 
-    @Override
+    @Override //Dequeue
     public void delete(int value) {
-        if (!queue.isEmpty()) {
-            int removed = queue.remove(0);
-            elements.remove((Integer) removed);
+        if (!elements.isEmpty()) {
+            elements.remove(0); 
         }
     }
 
     @Override
     public boolean find(int value) {
-        return queue.contains(value);
+        return elements.contains(value);
     }
 
     @Override
     public void sort() {
-        Collections.sort(elements);
-        queue.clear();
-        queue.addAll(elements);
+        Collections.sort(elements); 
     }
 }

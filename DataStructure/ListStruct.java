@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.util.*;
 
 
-public class List extends DataStructure {
+public class ListStruct extends DataStructure {
     @Override
     public void insert(int value) {
         elements.add(value);

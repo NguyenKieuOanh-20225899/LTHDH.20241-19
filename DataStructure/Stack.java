@@ -1,43 +1,28 @@
 package DataStructure;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-
+import java.util.Collections;
 
 public class Stack extends DataStructure {
-    private ArrayList<Integer> stack;
 
-    public Stack() {
-        stack = new ArrayList<>();
-    }
-
-    @Override
+    @Override //Push
     public void insert(int value) {
-        stack.add(value);
-        elements.add(value);
+        elements.add(value); 
     }
 
-    @Override
+    @Override //Pop
     public void delete(int value) {
-        if (!stack.isEmpty()) {
-            int removed = stack.remove(stack.size() - 1);
-            removed = (Integer)removed;
-            elements.remove(removed);
-        } 
+        if (!elements.isEmpty()) {
+            elements.remove(elements.size() - 1); 
+        }
     }
 
     @Override
     public boolean find(int value) {
-        return stack.contains(value);
+        return elements.contains(value); 
     }
 
     @Override
     public void sort() {
         Collections.sort(elements);
-        stack.clear();
-        stack.addAll(elements);
     }
 }
