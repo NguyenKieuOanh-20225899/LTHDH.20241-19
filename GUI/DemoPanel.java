@@ -8,7 +8,7 @@ import java.util.*;
 import DataStructure.Stack;
 import DataStructure.Queue;
 import DataStructure.DataStructure;
-import DataStructure.List;
+import DataStructure.ListStruct;
 import javax.swing.Timer;
 
 class DemoPanel extends JPanel {
@@ -16,6 +16,11 @@ class DemoPanel extends JPanel {
     private JTextArea outputArea;
     private JTextField inputField;
     private JPanel visualizationPanel;
+
+    private void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
 
     public DemoPanel(DataStructure dataStructure, String name) {
         this.dataStructure = dataStructure;
@@ -27,10 +32,12 @@ class DemoPanel extends JPanel {
         add(new JScrollPane(outputArea), BorderLayout.CENTER);
 
         inputField = new JTextField();
+        inputField.setPreferredSize(new Dimension(150, 30)); // Increase the size of the input field
         JPanel inputPanel = new JPanel(new FlowLayout());
         inputPanel.add(new JLabel("Enter Value: "));
         inputPanel.add(inputField);
         add(inputPanel, BorderLayout.NORTH);
+
 
         visualizationPanel = new JPanel() {
             @Override
@@ -39,9 +46,10 @@ class DemoPanel extends JPanel {
                 drawElements(g);
             }
         };
+
+
         visualizationPanel.setPreferredSize(new Dimension(400, 100));
         add(visualizationPanel, BorderLayout.SOUTH);
-
         JPanel buttonPanel = new JPanel(new GridLayout(1, 6, 5, 5));
         JButton createButton = new JButton("Create");
         JButton insertButton = new JButton("Insert");
@@ -59,13 +67,15 @@ class DemoPanel extends JPanel {
         insertButton.addActionListener(e -> {
             try {
                 int value = Integer.parseInt(inputField.getText());
-                dataStructure.insert(value);
+                animateInsertion(value); // Call animation for insertion
                 outputArea.append("Inserted: " + value + "\n");
-                animateInsertion(value);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                inputField.setText(""); // Clear input
             }
         });
+        
 
         sortButton.addActionListener(e -> {
             dataStructure.sort();
@@ -78,7 +88,7 @@ class DemoPanel extends JPanel {
                 int value = Integer.parseInt(inputField.getText());
                 outputArea.append("Element " + value + (dataStructure.find(value) ? " found\n" : " not found\n"));
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                showError("Please enter a valid integer.");
             }
         });
 
@@ -89,7 +99,9 @@ class DemoPanel extends JPanel {
                 outputArea.append("Deleted: " + value + "\n");
                 repaintVisualization();
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                showError("Please enter a valid integer.");
+            } finally {
+                inputField.setText(""); 
             }
         });
 
@@ -107,38 +119,58 @@ class DemoPanel extends JPanel {
 
     private void drawElements(Graphics g) {
         java.util.List<Integer> elements = dataStructure.getElements();
-        int x = 10;
-        int y = 20;
+        int x = 10, y = 20;
+        int panelHeight = 50 + (elements.size() / 8) * 50; // Dynamically adjust height 
+    
+        visualizationPanel.setPreferredSize(new Dimension(getWidth(), panelHeight));
+        visualizationPanel.revalidate();
+    
         for (int value : elements) {
             g.drawRect(x, y, 40, 40);
             g.drawString(String.valueOf(value), x + 15, y + 25);
             x += 50;
-        }
-    }
-
-    private void animateInsertion(int value) {
-        Timer timer = new Timer(100, new ActionListener() {
-            int xPos = 10;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Graphics g = visualizationPanel.getGraphics();
-                g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
-                drawElements(g);
-
-                g.drawRect(xPos, 20, 40, 40);
-                g.drawString(String.valueOf(value), xPos + 15, 25);
-                xPos += 50;
-
-                if (xPos > visualizationPanel.getWidth()) {
-                    ((Timer) e.getSource()).stop();
-                }
+            if (x > getWidth() - 50) {
+                x = 10;
+                y += 50;
             }
-        });
-        timer.start();
-    }
+        }
+    }    
 
     private void repaintVisualization() {
         visualizationPanel.repaint();
     }
+
+    private void animateInsertion(int value) {
+        int panelWidth = visualizationPanel.getWidth();
+        int x = 0; // Start from the leftmost side
+        int targetX = 10 + dataStructure.getElements().size() * 50; // Final position
+    
+        Timer timer = new Timer(20, null); // 20ms delay between frames
+        timer.addActionListener(new ActionListener() {
+            int currentX = x;
+    
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graphics g = visualizationPanel.getGraphics();
+                g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
+                drawElements(g); // Draw the current state
+    
+                // Draw the animated element
+                g.setColor(Color.RED);
+                g.drawRect(currentX, 20, 40, 40);
+                g.drawString(String.valueOf(value), currentX + 15, 40);
+    
+                if (currentX >= targetX) { // Stop animation when target is reached
+                    timer.stop();
+                    dataStructure.insert(value); // Finalize insertion in the data structure
+                    repaintVisualization(); // Redraw everything
+                }
+                currentX += 10; // Move the rectangle to the right
+            }
+        });
+        timer.start(); // Start the animation
+    }
+    
+    
 }
+
