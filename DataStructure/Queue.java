@@ -25,4 +25,9 @@ public class Queue extends DataStructure {
     public void sort() {
         Collections.sort(elements); 
     }
+
+    @Override
+    public String getType(){
+        return "Queue";
+    }
 }

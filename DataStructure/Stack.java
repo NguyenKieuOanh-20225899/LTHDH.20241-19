@@ -25,4 +25,9 @@ public class Stack extends DataStructure {
     public void sort() {
         Collections.sort(elements);
     }
+
+    @Override
+    public String getType(){
+        return "Stack";
+    }
 }
