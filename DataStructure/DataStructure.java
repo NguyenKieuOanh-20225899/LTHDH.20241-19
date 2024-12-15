@@ -22,4 +22,6 @@ public abstract class DataStructure{
     public List<Integer> getElements() {
         return elements;
     }
+
+    public abstract String getType();
 }
