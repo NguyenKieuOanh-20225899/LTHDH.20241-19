@@ -7,13 +7,5 @@ GIỚI THIỆU NHÓM 19:
     - Bùi Tuấn Phong - 20225900  
     - Hoàng Nguyễn Phong - 20215112  
 
-to do:
 
-  .doc -> report
-  .ppt -> presentation
-  link demo vid -> README  
-
-  animation-sort
-  linked_list impl
-  refract DemoPanel -> listener + visual
   
