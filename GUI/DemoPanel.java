@@ -8,7 +8,7 @@ import java.util.*;
 import DataStructure.Stack;
 import DataStructure.Queue;
 import DataStructure.DataStructure;
-import DataStructure.List;
+import DataStructure.ListStruct;
 import javax.swing.Timer;
 
 class DemoPanel extends JPanel {
