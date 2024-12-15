@@ -9,10 +9,12 @@ import javax.swing.Timer;
 import DataStructure.Stack;
 import DataStructure.Queue;
 import DataStructure.DataStructure;
-import DataStructure.List;
+import DataStructure.ListStruct;
 
 
 public class MainMenu extends JFrame {
+
+
     public MainMenu() {
         setTitle("Data Structure Operations");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +34,7 @@ public class MainMenu extends JFrame {
 
         stackButton.addActionListener(e -> openDemo(new DemoPanel(new Stack(), "Stack")));
         queueButton.addActionListener(e -> openDemo(new DemoPanel(new Queue(), "Queue")));
-        listButton.addActionListener(e -> openDemo(new DemoPanel(new List(), "List")));
+        listButton.addActionListener(e -> openDemo(new DemoPanel(new ListStruct(), "List")));
         helpButton.addActionListener(e -> showHelp());
         quitButton.addActionListener(e -> confirmQuit());
 
@@ -45,13 +47,24 @@ public class MainMenu extends JFrame {
         add(buttonPanel, BorderLayout.CENTER);
     }
 
-    private void openDemo(JPanel demoPanel) {
-        JFrame demoFrame = new JFrame(demoPanel.getName());
-        demoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        demoFrame.setSize(500, 400);
-        demoFrame.add(demoPanel);
-        demoFrame.setVisible(true);
+    private void openWindow(String title, JPanel panel, int width, int height) {
+        JFrame frame = new JFrame(title);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(width, height);
+        frame.add(panel);
+        frame.setVisible(true);
     }
+    private void openDemo(JPanel demoPanel) {
+        openWindow(demoPanel.getName(), demoPanel, 500, 400);
+    }
+
+    // private void openDemo(JPanel demoPanel) {
+    //     JFrame demoFrame = new JFrame(demoPanel.getName());
+    //     demoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    //     demoFrame.setSize(500, 400);
+    //     demoFrame.add(demoPanel);
+    //     demoFrame.setVisible(true);
+    // }
 
     private void showHelp() {
         JOptionPane.showMessageDialog(this, "This application demonstrates basic operations on Stack, Queue, and List structures.\nChoose a structure to begin.", "Help", JOptionPane.INFORMATION_MESSAGE);
