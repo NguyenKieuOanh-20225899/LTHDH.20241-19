@@ -1,4 +1,4 @@
-package GUI;
+package source.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,9 +6,10 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.Queue;
 
-import DataStructure.DataStructure;
-import DataStructure.ListStruct;
 import javax.swing.Timer;
+
+import source.DataStructure.DataStructure;
+import source.DataStructure.ListStruct;
 
 class DemoPanel extends JPanel {
     private DataStructure dataStructure;

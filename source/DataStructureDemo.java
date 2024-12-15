@@ -1,8 +1,10 @@
+package source;
 
-
-import GUI.MainMenu;
 
 import javax.swing.*;
+
+import source.GUI.MainMenu;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;

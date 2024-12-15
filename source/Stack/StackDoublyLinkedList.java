@@ -1,4 +1,4 @@
-package Stack;
+package source.Stack;
 
 //Lớp Stack sử dụng Linked List Kép
 class DoubleNode {

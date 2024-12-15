@@ -1,4 +1,4 @@
-package GUI;
+package source.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,10 +6,10 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
 
-import DataStructure.Stack;
-import DataStructure.Queue;
-import DataStructure.DataStructure;
-import DataStructure.ListStruct;
+import source.DataStructure.DataStructure;
+import source.DataStructure.ListStruct;
+import source.DataStructure.Queue;
+import source.DataStructure.Stack;
 
 
 public class MainMenu extends JFrame {
