@@ -186,8 +186,6 @@ class DemoPanel extends JPanel {
 
 
 
-
-
     // visual animation
     private void drawElements(Graphics g) {
         java.util.List<Integer> elements = dataStructure.getElements();
@@ -242,7 +240,7 @@ class DemoPanel extends JPanel {
     private void animateListInsertion(int value) {
         String type = dataStructure.getType();       
         if(!(type == "List")){
-            dataStructure.insert(value);    // data insertino
+            dataStructure.insert(value);    // data insertion
         }
     
         javax.swing.Timer timer = new javax.swing.Timer(20, (ActionEvent e) -> {
@@ -359,7 +357,4 @@ class DemoPanel extends JPanel {
         });
         timer.start(); 
     }
-    
-    
-
 }
