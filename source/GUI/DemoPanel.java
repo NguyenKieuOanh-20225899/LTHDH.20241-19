@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
+
 import source.DataStructure.DataStructure;
 import source.DataStructure.ListStruct;
 
@@ -73,7 +74,7 @@ public class DemoPanel extends JPanel {
         // Button Listeners
         createButton.addActionListener(e -> {
             dataStructure.getElements().clear();
-            outputArea.setText(name + " created\n");
+            outputArea.setText("New " + name + " created\n");
             repaintVisualization();
         });
 
