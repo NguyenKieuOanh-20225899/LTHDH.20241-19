@@ -5,6 +5,6 @@ module LTHDH20241{
     requires javafx.swing;
     
     exports source.GUI;
-    opens Main to javafx.fxml; // Mở package chứa controller
+    opens Main to javafx.fxml; 
     exports Main;
 }
