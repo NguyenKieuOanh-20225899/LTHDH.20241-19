@@ -89,10 +89,10 @@ public class AnimationHandler {
     
             if (currentX[0] >= targetX) {
                 ((javax.swing.Timer) e.getSource()).stop();
-                dataStructure.insert(value); // Insert the value into the data structure
+                dataStructure.insert(value); 
                 demoPanel.repaintVisualization();
             }
-            currentX[0] += 10; // Move the box to the right
+            currentX[0] += 10; 
         });
         timer.start();
     }
@@ -124,10 +124,10 @@ public class AnimationHandler {
     
                 if (currentY <= targetY) {
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.delete(valueToDelete); // Remove the element from the stack
+                    dataStructure.delete(valueToDelete); 
                     demoPanel.repaintVisualization();
                 }
-                currentY -= 10; // Move the box upward
+                currentY -= 10; 
             }
         });
         timer.start();
@@ -159,10 +159,10 @@ public class AnimationHandler {
     
                 if (currentX <= targetX) {
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.delete(valueToDelete); // Remove the front element from the queue
+                    dataStructure.delete(valueToDelete); 
                     demoPanel.repaintVisualization();
                 }
-                currentX -= 10; // Move the box to the left
+                currentX -= 10; 
             }
         });
         timer.start();
@@ -176,7 +176,7 @@ public class AnimationHandler {
         }
     
         int valueToDelete = dataStructure.getElements().get(index); // Element to delete
-        int startX = 10 + index * 50; // Starting position based on the index
+        int startX = 10 + index * 50; 
         int targetX = startX - 50;
     
         javax.swing.Timer timer = new javax.swing.Timer(40, null);
@@ -195,10 +195,10 @@ public class AnimationHandler {
     
                 if (currentX <= targetX) {
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.getElements().remove(index); // Remove the element at the index
+                    dataStructure.getElements().remove(index); 
                     demoPanel.repaintVisualization();
                 }
-                currentX -= 10; // Move the box to the left
+                currentX -= 10; 
             }
         });
         timer.start();

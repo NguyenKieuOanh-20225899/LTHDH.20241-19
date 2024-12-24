@@ -51,14 +51,14 @@ public class DemoPanel extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                animationHandler.drawElements(g); // Draw using AnimationHandler
+                animationHandler.drawElements(g); 
             }
         };
         visualizationPanel.setPreferredSize(new Dimension(500, 200));
         visualizationPanel.setBackground(Color.WHITE);
         add(visualizationPanel, BorderLayout.CENTER);
 
-        // Initialize AnimationHandler after visualizationPanel
+        // Initialize AnimationHandler 
         animationHandler = new AnimationHandler(dataStructure, this, visualizationPanel);
 
         // Buttons Panel
