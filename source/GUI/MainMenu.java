@@ -2,17 +2,15 @@ package source.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.Timer;
 
-import source.DataStructure.DataStructure;
 import source.DataStructure.ListStruct;
 import source.DataStructure.Queue;
 import source.DataStructure.Stack;
 
 
 public class MainMenu extends JFrame {
+	private static final long serialVersionUID = 1L;
+
 
 
     public MainMenu() {
@@ -20,17 +18,24 @@ public class MainMenu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(Color.decode("#ffffff")); 
 
         JLabel titleLabel = new JLabel("Data Structure Demonstration", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 10, 10));
+        buttonPanel.setBackground(Color.decode("#FFFFFF"));
         JButton stackButton = new JButton("Stack");
+        stackButton.setBackground(Color.decode("#CDEDDD"));
         JButton queueButton = new JButton("Queue");
+        queueButton.setBackground(Color.decode("#C0E9ED"));
         JButton listButton = new JButton("List");
+        listButton.setBackground(Color.decode("#FCE6D3"));
         JButton helpButton = new JButton("Help");
+        helpButton.setBackground(Color.decode("#FAD9D5"));
         JButton quitButton = new JButton("Quit");
+        quitButton.setBackground(Color.decode("#FBB7C7"));
 
         stackButton.addActionListener(e -> openDemo(new DemoPanel(new Stack(), "Stack")));
         queueButton.addActionListener(e -> openDemo(new DemoPanel(new Queue(), "Queue")));

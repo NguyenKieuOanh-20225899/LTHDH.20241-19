@@ -3,20 +3,20 @@ package source.GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-import java.util.Queue;
 
 
 import source.DataStructure.DataStructure;
 import source.DataStructure.ListStruct;
 
 class DemoPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
     private DataStructure dataStructure;
     private JTextArea outputArea;
     private JTextField inputField;
     private JPanel visualizationPanel;
-
+    
     public DemoPanel(DataStructure dataStructure, String name) {
+    	setBackground(Color.decode("#FFFFFF"));
         this.dataStructure = dataStructure;
         setName(name);
         setLayout(new BorderLayout());
@@ -36,12 +36,11 @@ class DemoPanel extends JPanel {
 
         // Index Panel
         inputField = new JTextField();
-        inputField.setPreferredSize(new Dimension(100, 30)); // Input for the value
+        inputField.setPreferredSize(new Dimension(100, 30)); 
         JTextField indexField = new JTextField();
-        indexField.setPreferredSize(new Dimension(50, 30)); // Input for the index
-
+        indexField.setPreferredSize(new Dimension(50, 30)); 
         JPanel inputPanel = new JPanel(new FlowLayout());
-        
+        inputPanel.setBackground(Color.decode("#FFFFFF"));
         JLabel valueLabel = new JLabel("Value: ");
         JLabel indexLabel = new JLabel("Index: "); 
 
@@ -51,7 +50,7 @@ class DemoPanel extends JPanel {
         inputPanel.add(indexField);
         add(inputPanel, BorderLayout.NORTH);
 
-        String type = dataStructure.getType();       // set index not visible for stack and queue
+        String type = dataStructure.getType();       
         if (type == "Stack" || type == "Queue") {
             indexField.setVisible(false);
             indexLabel.setVisible(false);
@@ -59,6 +58,7 @@ class DemoPanel extends JPanel {
 
         // Visualization Panel
         visualizationPanel = new JPanel() {
+        	private static final long serialVersionUID = 1L;
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -66,17 +66,23 @@ class DemoPanel extends JPanel {
             }
         };
         visualizationPanel.setPreferredSize(new Dimension(500, 200));
-        visualizationPanel.setBackground(Color.WHITE);
+        visualizationPanel.setBackground(Color.decode("#FFFFFF"));
         add(visualizationPanel, BorderLayout.CENTER);
 
         // Buttons Panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 6, 5, 5));
         JButton createButton = new JButton("Create");
+        createButton.setBackground(Color.decode("#FFFFD1")); 
         JButton insertButton = new JButton("Insert");
+        insertButton.setBackground(Color.decode("#FFFFD1")); 
         JButton sortButton = new JButton("Sort");
+        sortButton.setBackground(Color.decode("#FFFFD1")); 
         JButton findButton = new JButton("Find");
+        findButton.setBackground(Color.decode("#FFFFD1"));
         JButton deleteButton = new JButton("Delete");
+        deleteButton.setBackground(Color.decode("#FFABAB")); 
         JButton backButton = new JButton("Back");
+        backButton.setBackground(Color.decode("#c2bdb0")); 
 
         // Button Listeners
         createButton.addActionListener(e -> {
@@ -88,29 +94,28 @@ class DemoPanel extends JPanel {
                 //String type = dataStructure.getType();       
         insertButton.addActionListener(e -> {
             try {
-                int value = Integer.parseInt(inputField.getText());
-
-                if (type == "Stack" || type == "Queue") {
+                int value = Integer.parseInt(inputField.getText()); 
+                if ("Stack".equals(type) || "Queue".equals(type)) {
                     animateStackQueueInsertion(value); 
-                    outputArea.append("Inserted: " + value + " into the Stack\n");
+                    outputArea.append("Inserted: " + value + " into the " + type + "\n");
                 } 
-                else if (type == "List") {
-                    String indexText = indexField.getText().trim();
+                else if ("List".equals(type)) {
+                    String indexText = indexField.getText().trim(); 
 
                     if (!indexText.isEmpty()) {
                         int index = Integer.parseInt(indexText);
                         ((ListStruct) dataStructure).insert(value, index); 
                         outputArea.append("Inserted: " + value + " at index " + index + " in the List\n");
+                        animateListInsertionAtIndex(value, index); 
                     } 
                     else {
-                        ((ListStruct) dataStructure).insert(value); // .append()
+                        ((ListStruct) dataStructure).insert(value); 
                         outputArea.append("Inserted: " + value + " into the List\n");
+                        animateListInsertion(value);
                     }
-                    animateListInsertion(value); 
                 }
-        
-                repaintVisualization(); 
 
+                repaintVisualization(); 
 
             } catch (NumberFormatException ex) {
                 showError("Please enter valid integers for value and index.");
@@ -118,11 +123,10 @@ class DemoPanel extends JPanel {
                 showError("Invalid index: " + ex.getMessage());
             } finally {
                 inputField.setText(""); 
-                if (indexField != null) {
-                    indexField.setText(""); 
-                }
+                indexField.setText(""); 
             }
         });
+
 
         sortButton.addActionListener(e -> {
             dataStructure.sort();
@@ -139,7 +143,6 @@ class DemoPanel extends JPanel {
             }
         });
 
-                        //String type = dataStructure.getType();       
         deleteButton.addActionListener(e -> {
             try {
                 if (type == "Stack") {
@@ -196,14 +199,14 @@ class DemoPanel extends JPanel {
         int spacing = 10; 
 
         for (int value : elements) {
-            g.setColor(Color.LIGHT_GRAY); // Box color
+            g.setColor(Color.decode("#fffd7a")); 
             g.fillRect(x, y, boxWidth, boxHeight); 
-            g.setColor(Color.BLACK); // Border and text color
+            g.setColor(Color.BLACK); 
             g.drawRect(x, y, boxWidth, boxHeight); 
-            g.drawString(String.valueOf(value), x + 15, y + 25); // Draw value inside the box
+            g.drawString(String.valueOf(value), x + 15, y + 25); 
 
-            x += boxWidth + spacing; // Move to next position
-            if (x > visualizationPanel.getWidth() - boxWidth) { // Wrap to next row
+            x += boxWidth + spacing;
+            if (x > visualizationPanel.getWidth() - boxWidth) { 
                 x = 10;
                 y += boxHeight + spacing;
             }
@@ -215,10 +218,10 @@ class DemoPanel extends JPanel {
     }
 
     private void animateStackQueueInsertion(int value) {
-        int targetX = 10 + dataStructure.getElements().size() * 50; // Final position
+        int targetX = 10 + dataStructure.getElements().size() * 50;
         final int[] currentX = {0}; 
     
-        javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> { // Explicit javax.swing.Timer
+        javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> { 
             Graphics g = visualizationPanel.getGraphics();
             g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
             drawElements(g); 
@@ -236,28 +239,56 @@ class DemoPanel extends JPanel {
         });
         timer.start(); 
     }
+    private void animateListInsertionAtIndex(int value, int index) {
+        int targetX = 10 + (dataStructure.getElements().size()-1) * 50;
+        final int[] currentX = {0}; 
 
-    private void animateListInsertion(int value) {
-        String type = dataStructure.getType();       
-        if(!(type == "List")){
-            dataStructure.insert(value);    // data insertion
-        }
-    
-        javax.swing.Timer timer = new javax.swing.Timer(20, (ActionEvent e) -> {
-            ((javax.swing.Timer) e.getSource()).stop(); 
-            repaintVisualization(); 
+        javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> {
+            Graphics g = visualizationPanel.getGraphics();
+            g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
+            drawElements(g); 
+
+            g.setColor(Color.BLUE);
+            g.drawRect(currentX[0], 20, 40, 40);
+            g.drawString(String.valueOf(value), currentX[0] + 15, 40);
+
+            if (currentX[0] >= targetX) {
+                ((javax.swing.Timer) e.getSource()).stop();
+                repaintVisualization();
+            }
+            currentX[0] += 10; 
         });
-        timer.setRepeats(false); // execute the action once
-        timer.start(); 
+        timer.start();
     }
 
-    private void animateStackDelete() {
+    private void animateListInsertion(int value) {
+        int targetX = 10 + (dataStructure.getElements().size()-1) * 50;
+        final int[] currentX = {0}; 
+
+        javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> {
+            Graphics g = visualizationPanel.getGraphics();
+            g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
+            drawElements(g);
+
+            g.setColor(Color.RED); 
+            g.drawRect(currentX[0], 20, 40, 40);
+            g.drawString(String.valueOf(value), currentX[0] + 15, 40);
+
+            if (currentX[0] >= targetX) {
+                ((javax.swing.Timer) e.getSource()).stop();
+                repaintVisualization(); 
+            }
+            currentX[0] += 10; 
+        });
+        timer.start();
+    }
+  private void animateStackDelete() {
         if (dataStructure.getElements().isEmpty()) {
             showError("Stack is empty. Nothing to delete.");
             return;
         }
     
-        int valueToDelete = dataStructure.getElements().get(dataStructure.getElements().size() - 1); // Top element
+        int valueToDelete = dataStructure.getElements().get(dataStructure.getElements().size() - 1); 
     
         final int startY = 20; 
         final int targetY = -40; 
@@ -278,10 +309,10 @@ class DemoPanel extends JPanel {
     
                 if (currentY <= targetY) { 
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.delete(valueToDelete); // data deletion
+                    dataStructure.delete(valueToDelete); 
                     repaintVisualization(); 
                 }
-                currentY -= 10; // Move the rectangle upwards
+                currentY -= 10; 
             }
         });
         timer.start(); 
@@ -292,7 +323,7 @@ class DemoPanel extends JPanel {
             showError("Queue is empty. Nothing to delete.");
             return;
         }
-        int valueToDelete = dataStructure.getElements().get(0); // First element
+        int valueToDelete = dataStructure.getElements().get(0); 
     
         final int startX = 10; 
         final int targetX = -50; 
@@ -313,7 +344,7 @@ class DemoPanel extends JPanel {
     
                 if (currentX <= targetX) { 
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.delete(valueToDelete); // data deletion
+                    dataStructure.delete(valueToDelete);
                     repaintVisualization(); 
                 }
                 currentX -= 10; 
@@ -341,7 +372,7 @@ class DemoPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Graphics g = visualizationPanel.getGraphics();
                 g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
-                drawElements(g); // draw all except deleted element
+                drawElements(g); 
     
                 g.setColor(Color.RED);
                 g.drawRect(currentX, 20, 40, 40);
@@ -349,7 +380,7 @@ class DemoPanel extends JPanel {
     
                 if (currentX <= targetX) { 
                     ((javax.swing.Timer) e.getSource()).stop();
-                    dataStructure.getElements().remove(index); // data deletion
+                    dataStructure.getElements().remove(index); 
                     repaintVisualization(); 
                 }
                 currentX -= 10; 

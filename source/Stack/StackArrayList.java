@@ -1,7 +1,5 @@
 package source.Stack;
 
-import java.util.*;
-
 //Stack sử dụng ArrayList
 public class StackArrayList extends DataStructure {
 
