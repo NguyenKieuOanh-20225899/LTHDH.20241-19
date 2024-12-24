@@ -26,14 +26,6 @@ class DemoPanel extends JPanel {
         outputArea.setEditable(false);
         add(new JScrollPane(outputArea), BorderLayout.EAST);
 
-        // Input Panel
-        // inputField = new JTextField();
-        // inputField.setPreferredSize(new Dimension(150, 30));
-        // JPanel inputPanel = new JPanel(new FlowLayout());
-        // inputPanel.add(new JLabel("Enter Value: "));
-        // inputPanel.add(inputField);
-        // add(inputPanel, BorderLayout.NORTH);
-
         // Index Panel
         inputField = new JTextField();
         inputField.setPreferredSize(new Dimension(100, 30)); // Input for the value
