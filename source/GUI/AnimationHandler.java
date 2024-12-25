@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import source.DataStructure.DataStructure;
+import source.DataStructure.ListStruct;
 
 public class AnimationHandler {
     private DataStructure dataStructure;
@@ -74,28 +75,39 @@ public class AnimationHandler {
     }
     
 
-    public void animateListInsertion(int value) {
-        int targetX = 10 + dataStructure.getElements().size() * 50; // Target position
-        final int[] currentX = {0};
-    
-        javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> {
-            Graphics g = visualizationPanel.getGraphics();
-            g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
-            drawElements(g);
-    
-            g.setColor(Color.BLUE);
-            g.drawRect(currentX[0], 20, 40, 40);
-            g.drawString(String.valueOf(value), currentX[0] + 15, 40);
-    
-            if (currentX[0] >= targetX) {
-                ((javax.swing.Timer) e.getSource()).stop();
-                dataStructure.insert(value); // Insert the value into the data structure
-                demoPanel.repaintVisualization();
-            }
-            currentX[0] += 10; // Move the box to the right
-        });
-        timer.start();
+    public void animateListInsertion(int value, int targetIndex) {
+    final int[] index = {targetIndex}; 
+    int targetX;
+
+    if (index[0] >= 0 && index[0] <= dataStructure.getElements().size()) {
+        targetX = 10 + index[0] * 50;
+    } else {
+        targetX = 10 + dataStructure.getElements().size() * 50;
+        index[0] = dataStructure.getElements().size(); 
     }
+
+    final int[] currentX = {0};
+
+    javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> {
+        Graphics g = visualizationPanel.getGraphics();
+        g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
+        drawElements(g);
+
+        g.setColor(Color.BLUE);
+        g.drawRect(currentX[0], 20, 40, 40);
+        g.drawString(String.valueOf(value), currentX[0] + 15, 40);
+
+        if (currentX[0] >= targetX) {
+            ((javax.swing.Timer) e.getSource()).stop();
+
+            ((ListStruct) dataStructure).insert(value, index[0]);
+            demoPanel.repaintVisualization();
+        }
+        currentX[0] += 10;
+    });
+    timer.start();
+}
+
     
 
     public void animateStackDelete() {
