@@ -87,7 +87,6 @@ public class AnimationHandler {
     }
 
     final int[] currentX = {0};
-
     javax.swing.Timer timer = new javax.swing.Timer(40, (ActionEvent e) -> {
         Graphics g = visualizationPanel.getGraphics();
         g.clearRect(0, 0, visualizationPanel.getWidth(), visualizationPanel.getHeight());
