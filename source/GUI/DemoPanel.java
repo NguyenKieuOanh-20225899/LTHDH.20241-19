@@ -83,21 +83,21 @@ public class DemoPanel extends JPanel {
                 if (type.equals("Stack") || type.equals("Queue")) {
                     animationHandler.animateStackQueueInsertion(value);
                     outputArea.append("Inserted: " + value + " into the " + type + "\n");
-        
+
                 } else if (type.equals("List")) {
                     String indexText = indexField.getText().trim();
-        
+
                     if (!indexText.isEmpty()) {
                         int index = Integer.parseInt(indexText);
                         outputArea.append("Inserted: " + value + " at index " + index + " in the List\n");
                         animationHandler.animateListInsertion(value, index);
                     } else {
                         outputArea.append("Inserted: " + value + " at the end of the List\n");
-                        animationHandler.animateListInsertion(value, -1); 
+                        animationHandler.animateListInsertion(value, -1);
                     }
                 }
                 repaintVisualization();
-        
+
             } catch (NumberFormatException ex) {
                 showError("Please enter valid integers for value and index.");
             } catch (IndexOutOfBoundsException ex) {
@@ -107,7 +107,6 @@ public class DemoPanel extends JPanel {
                 indexField.setText("");
             }
         });
-        
 
         sortButton.addActionListener(e -> animationHandler.animateSort(outputArea, name));
 

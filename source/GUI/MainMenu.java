@@ -7,18 +7,15 @@ import source.DataStructure.ListStruct;
 import source.DataStructure.Queue;
 import source.DataStructure.Stack;
 
-
 public class MainMenu extends JFrame {
-	private static final long serialVersionUID = 1L;
-
-
+    private static final long serialVersionUID = 1L;
 
     public MainMenu() {
         setTitle("Data Structure Operations");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(Color.decode("#ffffff")); 
+        getContentPane().setBackground(Color.decode("#ffffff"));
 
         JLabel titleLabel = new JLabel("Data Structure Demonstration", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -59,24 +56,28 @@ public class MainMenu extends JFrame {
         frame.add(panel);
         frame.setVisible(true);
     }
+
     private void openDemo(JPanel demoPanel) {
         openWindow(demoPanel.getName(), demoPanel, 500, 400);
     }
 
     // private void openDemo(JPanel demoPanel) {
-    //     JFrame demoFrame = new JFrame(demoPanel.getName());
-    //     demoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    //     demoFrame.setSize(500, 400);
-    //     demoFrame.add(demoPanel);
-    //     demoFrame.setVisible(true);
+    // JFrame demoFrame = new JFrame(demoPanel.getName());
+    // demoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    // demoFrame.setSize(500, 400);
+    // demoFrame.add(demoPanel);
+    // demoFrame.setVisible(true);
     // }
 
     private void showHelp() {
-        JOptionPane.showMessageDialog(this, "This application demonstrates basic operations on Stack, Queue, and List structures.\nChoose a structure to begin.", "Help", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+                "This application demonstrates basic operations on Stack, Queue, and List structures.\nChoose a structure to begin.",
+                "Help", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void confirmQuit() {
-        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to quit?", "Confirm Exit",
+                JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
