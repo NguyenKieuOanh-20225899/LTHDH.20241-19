@@ -61,14 +61,6 @@ public class MainMenu extends JFrame {
         openWindow(demoPanel.getName(), demoPanel, 500, 400);
     }
 
-    // private void openDemo(JPanel demoPanel) {
-    // JFrame demoFrame = new JFrame(demoPanel.getName());
-    // demoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    // demoFrame.setSize(500, 400);
-    // demoFrame.add(demoPanel);
-    // demoFrame.setVisible(true);
-    // }
-
     private void showHelp() {
         JOptionPane.showMessageDialog(this,
                 "This application demonstrates basic operations on Stack, Queue, and List structures.\nChoose a structure to begin.",
