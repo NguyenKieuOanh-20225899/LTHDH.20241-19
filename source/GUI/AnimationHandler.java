@@ -31,7 +31,7 @@ public class AnimationHandler {
         for (int index = 0; index < elements.size(); index++) {
             int value = elements.get(index);
 
-            g.setColor(Color.LIGHT_GRAY);
+            g.setColor(Color.decode("#fffd7a")); 
             g.fillRect(x, y, boxWidth, boxHeight);
             g.setColor(Color.BLACK);
             g.drawRect(x, y, boxWidth, boxHeight);

@@ -2,20 +2,17 @@ package source.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.List;
+
 import source.DataStructure.DataStructure;
-import source.DataStructure.ListStruct;
 
 public class DemoPanel extends JPanel {
-    private DataStructure dataStructure;
+	private static final long serialVersionUID = 1L;
     private JTextArea outputArea;
     private JTextField inputField;
     private JPanel visualizationPanel;
     private AnimationHandler animationHandler;
 
     public DemoPanel(DataStructure dataStructure, String name) {
-        this.dataStructure = dataStructure;
         setName(name);
         setLayout(new BorderLayout());
 
@@ -48,6 +45,7 @@ public class DemoPanel extends JPanel {
 
         // Visualization Panel
         visualizationPanel = new JPanel() {
+        	private static final long serialVersionUID = 1L;
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -64,11 +62,17 @@ public class DemoPanel extends JPanel {
         // Buttons Panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 6, 5, 5));
         JButton createButton = new JButton("Create");
+        createButton.setBackground(Color.decode("#FFFFD1")); 
         JButton insertButton = new JButton("Insert");
+        insertButton.setBackground(Color.decode("#FFFFD1")); 
         JButton sortButton = new JButton("Sort");
+        sortButton.setBackground(Color.decode("#FFFFD1")); 
         JButton findButton = new JButton("Find");
+        findButton.setBackground(Color.decode("#FFFFD1"));
         JButton deleteButton = new JButton("Delete");
+        deleteButton.setBackground(Color.decode("#FFABAB")); 
         JButton backButton = new JButton("Back");
+        backButton.setBackground(Color.decode("#c2bdb0")); 
 
         // Button Listeners
         createButton.addActionListener(e -> {

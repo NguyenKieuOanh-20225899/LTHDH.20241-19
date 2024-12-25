@@ -27,15 +27,15 @@ public class MainMenu extends JFrame {
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 10, 10));
         buttonPanel.setBackground(Color.decode("#FFFFFF"));
         JButton stackButton = new JButton("Stack");
-        stackButton.setBackground(Color.decode("#FFFFFF"));
+        stackButton.setBackground(Color.decode("#CDEDDD"));
         JButton queueButton = new JButton("Queue");
-        queueButton.setBackground(Color.decode("#FFFFFF"));
+        queueButton.setBackground(Color.decode("#C0E9ED"));
         JButton listButton = new JButton("List");
-        listButton.setBackground(Color.decode("#FFFFFF"));
+        listButton.setBackground(Color.decode("#FCE6D3"));
         JButton helpButton = new JButton("Help");
-        helpButton.setBackground(Color.decode("#FFFFFF"));
+        helpButton.setBackground(Color.decode("#FAD9D5"));
         JButton quitButton = new JButton("Quit");
-        quitButton.setBackground(Color.decode("#FFFFFF"));
+        quitButton.setBackground(Color.decode("#FBB7C7"));
 
         stackButton.addActionListener(e -> openDemo(new DemoPanel(new Stack(), "Stack")));
         queueButton.addActionListener(e -> openDemo(new DemoPanel(new Queue(), "Queue")));
