@@ -7,5 +7,5 @@ GIỚI THIỆU NHÓM 19:
     - Bùi Tuấn Phong - 20225900  
     - Hoàng Nguyễn Phong - 20215112  
 
-
+  Video demo: https://youtu.be/5wzzitkq6sM?si=dB-oDPKbDa6L4H7N
   
